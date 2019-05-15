@@ -1,0 +1,22 @@
+
+.main_box {
+  min-height: 100%;
+  
+}
+.layout {
+  flex-direction: row;
+}
+.menu {
+  flex:0 0;
+}
+.logo {
+  margin-right: 20px;
+  font-size: 16px;
+  height: 16px;
+}
+.footer {
+  background: #384a5e;
+  padding: 8px 20px 5px 20px;
+  font-size: 12px;
+  height: 33px;
+}
