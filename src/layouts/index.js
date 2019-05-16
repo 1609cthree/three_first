@@ -50,7 +50,6 @@ class BasicLayout extends Component {
               type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={this.toggle}
             />
-           
               <AutoComplete
                 // className="certain-category-search"
                 // dropdownClassName="certain-category-search-dropdown"
