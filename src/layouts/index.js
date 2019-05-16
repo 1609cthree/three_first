@@ -1,9 +1,14 @@
 import styles from './index.css';
 import React, { Component } from 'react'
 import router from 'umi/router';
+import MyHeader from './MyHeader'
 import { Layout, Menu, Icon, Input, AutoComplete} from 'antd';
+import { connect } from 'dva'
 const { SubMenu } = Menu;
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
+@connect(state => state, (dispatch) => ({
+
+}))
 class BasicLayout extends Component {
     constructor (props) {
       super(props);
@@ -18,11 +23,6 @@ class BasicLayout extends Component {
         ]
       };
     }
-    toggle = () => {
-      this.setState({
-        collapsed: !this.state.collapsed,
-      });
-    };
     onOpenChange = openKeys => {
       // console.log(this.state.openKeys)
       const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1);
@@ -39,40 +39,17 @@ class BasicLayout extends Component {
       router.push(option.key)
     }
     render () {
-      // console.log(this.props)
+      console.log(this.props)
       return (
          <Layout className={styles.main_box}>
-          <Header className="header">
-            <span className={styles.logo} style={{display: this.state.collapsed ? 'none' : 'inline' }}>突发预警系统</span>
-            <Icon
-              className="trigger"
-              style={{fontSize: '20px'}}
-              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-              onClick={this.toggle}
-            />
-           
-              <AutoComplete
-                // className="certain-category-search"
-                // dropdownClassName="certain-category-search-dropdown"
-                // dropdownMatchSelectWidth={false}
-                // dropdownStyle={{ width: 300 }}
-                // size="large"
-                // style={{ width: '100%' }}
-                // dataSource={this.state.options}
-                // placeholder="input here"
-                // optionLabelProp="value"
-              >
-                <Input suffix={<Icon type="search" className="certain-category-icon" />} />
-              </AutoComplete>
-            
-          </Header>
+          <MyHeader></MyHeader>
           <Layout className={styles.layout}>
             
               <Menu
                 defaultSelectedKeys={['1']}
                 mode="inline"
                 theme="dark"
-                inlineCollapsed={this.state.collapsed}
+                inlineCollapsed={this.props.menu.collapsed}
                 openKeys={this.state.openKeys}
                 onOpenChange={this.onOpenChange}
                 onClick={this.onClickItem}

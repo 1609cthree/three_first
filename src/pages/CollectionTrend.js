@@ -12,29 +12,23 @@ am4core.useTheme(am4themes_animated);
     let chart = am4core.create("chartdiv", am4charts.XYChart);
 
     chart.data = [{
-        "country": "USA",
+        "country": "爆炸品",
         "visits": 43
         }, {
-        "country": "China",
+        "country": "枪支交易",
         "visits": 14
         }, {
-        "country": "Japan",
+        "country": "违禁药品",
         "visits": 12
         }, {
-        "country": "",
+        "country": "情报交易",
         "visits": 42
         }, {
-        "country": "UK",
+        "country": "数据黑市",
         "visits": 22
         }, {
-        "country": "",
+        "country": "信息泄露",
         "visits": 55
-        }, {
-        "country": "India",
-        "visits":33
-        }, {
-        "country": "Spain",
-        "visits": 22
         }];
 
         // Create axes
@@ -45,9 +39,9 @@ am4core.useTheme(am4themes_animated);
         categoryAxis.renderer.minGridDistance = 30;
 
         categoryAxis.renderer.labels.template.adapter.add("dy", function(dy, target) {
-        if (target.dataItem && target.dataItem.index & 2 == 2) {
-            return dy + 25;
-        }
+        // if (target.dataItem && target.dataItem.index & 2 == 2) {
+        //     return dy + 25;
+        // }
         return dy;
         });
 
