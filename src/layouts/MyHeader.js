@@ -1,6 +1,6 @@
 import styles from './index.css';
 import React, { Component } from 'react'
-import { Layout, Icon, Input, AutoComplete, Popover, Button, Tag, List, Avatar} from 'antd';
+import { Layout, Icon, Input, AutoComplete, Popover, Button, Tag, List, Avatar, Badge} from 'antd';
 import { connect } from 'dva'
 const { Header } = Layout;
 
@@ -17,11 +17,24 @@ class MyHeader extends Component {
   constructor (props) {
       super(props);
       this.state = {
+          InputWidth: '150px',
           data: ['Racing car sprays burning fuel into crowd.',
                 'Japanese princess to wed commoner.',
                 'Australian walks 100km after outback crash.',
                 'Man charged over missing wedding girl.',
-                'Los Angeles battles huge wildfires.']  
+                'Los Angeles battles huge wildfires.'],
+          userData: [
+            '退出登录'
+          ],
+          languageData: [
+            '中文简体',
+            'English',
+            'France'
+
+          ],
+          options: [
+            'aa','bb','cc'
+          ]
       }
   }
   render() {
@@ -40,15 +53,18 @@ class MyHeader extends Component {
             
            <div>
               <AutoComplete
-                // className="certain-category-search"
-                // dropdownClassName="certain-category-search-dropdown"
-                // dropdownMatchSelectWidth={false}
-                // dropdownStyle={{ width: 300 }}
-                // size="large"
-                // style={{ width: '100%' }}
-                // dataSource={this.state.options}
-                // placeholder="input here"
-                // optionLabelProp="value"
+                className="certain-category-search"
+                dropdownClassName="certain-category-search-dropdown"
+                dropdownMatchSelectWidth={false}
+                dropdownStyle={{ width: 300 }}
+                size="large"
+                style={{ width: this.state.InputWidth }}
+                dataSource={this.state.options}
+                placeholder="input here"
+                optionLabelProp="value"
+                onFocus={()=>{this.setState({InputWidth: '250px'})}}
+                onBlur={()=>{this.setState({InputWidth: '150px'})}}
+
               >
                 <Input suffix={<Icon type="search" className="certain-category-icon" />} />
               </AutoComplete>
@@ -62,33 +78,36 @@ class MyHeader extends Component {
                        ></List>}
                        size="big" 
                        trigger="click">
-                  <Icon type="bell" style={{fontSize: '20px', margin: '0 10px'}} />
+                       <span>
+                       <Badge offset={[-10,0]} count={5}>
+                          <Icon type="bell" style={{fontSize: '20px', margin: '0 10px'}} />
+                      </Badge>
+                      </span>
               </Popover>
               <Popover placement="bottomRight" 
                       //  title="消息" 
                        content={<List 
-                       dataSource={this.state.data}
+                       dataSource={this.state.userData}
                        renderItem={(item)=>(
                           <List.Item>{item}</List.Item>
                        )}
                        ></List>}
                        size="big" 
                        trigger="click">
-                  {/* <Icon type="bell" style={{fontSize: '20px', margin: '0 10px'}} /> */}
-                  <span><Avatar icon="user" />Nick</span>
+                  <span style={{padding: '0 10px'}}><Avatar icon="user" style={{marginRight: '5px'}} />Nick</span>
               </Popover>
               <Popover placement="bottomRight" 
                       //  title="消息" 
                        content={<List 
-                       dataSource={this.state.data}
+                       dataSource={this.state.languageData}
                        renderItem={(item)=>(
                           <List.Item>{item}</List.Item>
                        )}
                        ></List>}
-                       size="big" 
+                       size="small" 
                        trigger="click">
                   {/* <Icon type="bell" style={{fontSize: '20px', margin: '0 10px'}} /> */}
-                  <span><Tag color="#f50">#f50</Tag>中文简体V</span>
+                  <span>中文简体V</span>
               </Popover>
            </div>
       </div>

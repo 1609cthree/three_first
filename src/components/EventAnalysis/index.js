@@ -10,7 +10,7 @@ am4core.useTheme(am4themes_animated);
 
  class EventAnalysis extends Component {
   componentDidMount() {
-    let chart = am4core.create("chartdiv", am4charts.XYChart);
+    let chart = am4core.create("eventanalysis", am4charts.XYChart);
 
     chart.colors.step = 2;
     chart.maskBullets = false;
@@ -230,7 +230,7 @@ am4core.useTheme(am4themes_animated);
 
   render() {
     return (
-      <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+      <div id="eventanalysis" style={{ width: "100%", height: "500px" }}></div>
     );
   }
 }
