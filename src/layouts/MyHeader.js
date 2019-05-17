@@ -2,6 +2,8 @@ import styles from './index.css';
 import React, { Component } from 'react'
 import { Layout, Icon, Input, AutoComplete, Popover, Button, Tag, List, Avatar} from 'antd';
 import { connect } from 'dva'
+import { formatMessage, setLocale, getLocale, FormattedMessage } from 'umi/locale'
+
 const { Header } = Layout;
 
 
@@ -14,88 +16,111 @@ const { Header } = Layout;
     }
 }))
 class MyHeader extends Component {
-  constructor (props) {
-      super(props);
-      this.state = {
-          data: ['Racing car sprays burning fuel into crowd.',
-                'Japanese princess to wed commoner.',
-                'Australian walks 100km after outback crash.',
-                'Man charged over missing wedding girl.',
-                'Los Angeles battles huge wildfires.']  
-      }
-  }
-  render() {
-    return (
-      <Header className="header">
-      <div className={styles.header_box}>
-          <div>
-            <span className={styles.logo} style={{display: this.props.menu.collapsed ? 'none' : 'inline' }}>突发预警系统</span>
-            <Icon
-              className="trigger"
-              style={{fontSize: '20px'}}
-              type={this.props.menu.collapsed ? 'menu-unfold' : 'menu-fold'}
-              onClick={this.props.ChangeCollapsed}
-            />
-          </div>
-            
-           <div>
-              <AutoComplete
-                // className="certain-category-search"
-                // dropdownClassName="certain-category-search-dropdown"
-                // dropdownMatchSelectWidth={false}
-                // dropdownStyle={{ width: 300 }}
-                // size="large"
-                // style={{ width: '100%' }}
-                // dataSource={this.state.options}
-                // placeholder="input here"
-                // optionLabelProp="value"
-              >
-                <Input suffix={<Icon type="search" className="certain-category-icon" />} />
-              </AutoComplete>
-              <Popover placement="bottomRight" 
-                       title="消息" 
-                       content={<List 
-                       dataSource={this.state.data}
-                       renderItem={(item)=>(
-                          <List.Item>{item}</List.Item>
-                       )}
-                       ></List>}
-                       size="big" 
-                       trigger="click">
-                  <Icon type="bell" style={{fontSize: '20px', margin: '0 10px'}} />
-              </Popover>
-              <Popover placement="bottomRight" 
-                      //  title="消息" 
-                       content={<List 
-                       dataSource={this.state.data}
-                       renderItem={(item)=>(
-                          <List.Item>{item}</List.Item>
-                       )}
-                       ></List>}
-                       size="big" 
-                       trigger="click">
-                  {/* <Icon type="bell" style={{fontSize: '20px', margin: '0 10px'}} /> */}
-                  <span><Avatar icon="user" />Nick</span>
-              </Popover>
-              <Popover placement="bottomRight" 
-                      //  title="消息" 
-                       content={<List 
-                       dataSource={this.state.data}
-                       renderItem={(item)=>(
-                          <List.Item>{item}</List.Item>
-                       )}
-                       ></List>}
-                       size="big" 
-                       trigger="click">
-                  {/* <Icon type="bell" style={{fontSize: '20px', margin: '0 10px'}} /> */}
-                  <span><Tag color="#f50">#f50</Tag>中文简体V</span>
-              </Popover>
-           </div>
-      </div>
-          
-          </Header>
-    )
-  }
+    constructor (props) {
+        super(props);
+        this.state = {
+            // lang: 'zh-CN',
+            data: [
+              {id: 'zh-CN',cont: '切换简体中文'},
+              {id: 'en-US',cont: 'English'}
+            ]  
+        }
+    }
+    componentDidMount() {
+        console.log(FormattedMessage)
+    }
+    changeLang = ()=> {
+        var lang = 'zh-CN';
+
+        // let { lang } = this.state;
+        // console.log(lang)
+        // if (lang === 'zh-CN') {
+        //     console.log('1')
+        //     setLocale('en-US')
+        //     this.setState({lang: 'en-US'})
+        // } else {
+        //     console.log('2')
+        //     setLocale('zh-CN')
+        // }
+        // // console.log(1)
+        // formatMessage({
+        //     id: 'WELCOME_TO_UMI_WORLD',
+        // }, {
+        //     name: '小哥哥'
+        // })
+    }
+    render() {
+      return (
+        <Header className="header">
+            <div className={styles.header_box}>
+                <div>
+                  <span className={styles.logo} style={{display: this.props.menu.collapsed ? 'none' : 'inline' }}>
+                      <FormattedMessage id='HEADER_TITLE'/>
+                  </span>
+                  <Icon
+                    className="trigger"
+                    style={{fontSize: '20px'}}
+                    type={this.props.menu.collapsed ? 'menu-unfold' : 'menu-fold'}
+                    onClick={this.props.ChangeCollapsed}
+                  />
+                </div>
+                <div>
+                    <AutoComplete
+                      // className="certain-category-search"
+                      // dropdownClassName="certain-category-search-dropdown"
+                      // dropdownMatchSelectWidth={false}
+                      // dropdownStyle={{ width: 300 }}
+                      // size="large"
+                      // style={{ width: '100%' }}
+                      // dataSource={this.state.options}
+                      // placeholder="input here"
+                      // optionLabelProp="value"
+                    >
+                      <Input suffix={<Icon type="search" className="certain-category-icon" />} />
+                    </AutoComplete>
+                    <Popover placement="bottomRight" 
+                            title="消息" 
+                            content={<List 
+                            dataSource={this.state.data}
+                            renderItem={(item)=>(
+                                <List.Item id={item.id}>{item.cont}</List.Item>
+                            )}
+                            ></List>}
+                            size="big" 
+                            trigger="click">
+                        <Icon type="bell" style={{fontSize: '20px', margin: '0 10px'}} />
+                    </Popover>
+                    <Popover placement="bottomRight" 
+                            //  title="消息" 
+                            content={<List 
+                            dataSource={this.state.data}
+                            renderItem={(item)=>(
+                                <List.Item>{item}</List.Item>
+                            )}
+                            ></List>}
+                            size="big" 
+                            trigger="click">
+                        {/* <Icon type="bell" style={{fontSize: '20px', margin: '0 10px'}} /> */}
+                        <span><Avatar icon="user" />Nick</span>
+                    </Popover>
+                    <Popover placement="bottomRight" 
+                            //  title="消息" 
+                            content={<List 
+                            dataSource={this.state.data}
+                            renderItem={(item)=>(
+                                <List.Item>{item}</List.Item>
+                            )}
+                            ></List>}
+                            size="big" 
+                            trigger="click">
+                        {/* <Icon type="bell" style={{fontSize: '20px', margin: '0 10px'}} /> */}
+                        <span onClick={this.changeLang}><Tag color="#f50">#f50</Tag>中文简体V</span>
+                    </Popover>
+                </div>
+            </div>
+        </Header>
+      )
+    }
 }
 
 export default MyHeader
