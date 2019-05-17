@@ -39,7 +39,7 @@ class BasicLayout extends Component {
       router.push(option.key)
     }
     render () {
-      console.log(this.props)
+      // console.log(this.props)
       return (
          <Layout className={styles.main_box}>
           <MyHeader></MyHeader>
@@ -119,7 +119,7 @@ class BasicLayout extends Component {
             <Layout style={{ padding: '20px' }}>
               <Content
                 style={{
-                  background: '#fff',
+                  background: '#f0f2f5',
                   padding: 24,
                   margin: 0,
                   minHeight: 240,

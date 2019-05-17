@@ -14,15 +14,24 @@ am4core.useTheme(am4themes_animated);
  class EventAnalysis extends Component {
   componentDidMount() {
 
-      let chart = am4core.create("chartdiv", am4maps.MapChart);
-        chart.zoomControl = new am4maps.ZoomControl({
-            dx: 200
-        });
-        chart.zoomControl.align  = 'left';
-        chart.zoomControl.valign  = 'top';
+      let chart = am4core.create("map", am4maps.MapChart);
+      chart.zoomControl = new am4maps.ZoomControl();
+      chart.zoomControl.align  = 'left';
+      chart.zoomControl.valign  = 'top';
 
-        
-        console.log(chart.zoomControl )
+      let button = chart.chartContainer.createChild(am4core.Button);
+      // button.label.text = "home";
+      button.padding(5, 5, 5, 5);
+      button.width = 30;
+      button.align = "left";
+      button.dy = 60;
+      button.dx = 5;
+
+      button.events.on("hit", function() {
+        chart.goHome();
+      });
+      button.icon = new am4core.Sprite();
+      button.icon.path = "M16,8 L14,8 L14,16 L10,16 L10,10 L6,10 L6,16 L2,16 L2,8 L0,8 L8,0 L16,8 Z M16,8";
 
       let title = chart.titles.create();
         title.text = "[bold font-size: 20]Population of the World in 2011[/]\nsource: Gapminder";
@@ -494,7 +503,7 @@ am4core.useTheme(am4themes_animated);
 
   render() {
     return (
-      <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+      <div id="map" style={{ width: "100%", height: "500px" }}></div>
     );
   }
 }
