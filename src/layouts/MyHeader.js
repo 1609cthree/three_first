@@ -1,7 +1,9 @@
 import styles from './index.css';
 import React, { Component } from 'react'
-import { Layout, Icon, Input, AutoComplete, Popover, Button, Tag, List, Avatar, Badge} from 'antd';
+import { Layout, Icon, Input, AutoComplete, Popover, List, Avatar, Badge} from 'antd';
 import { connect } from 'dva'
+import { formatMessage, setLocale, getLocale, FormattedMessage } from 'umi/locale'
+
 const { Header } = Layout;
 
 
@@ -37,12 +39,22 @@ class MyHeader extends Component {
           ]
       }
   }
+  localeChange (locale) {
+    if (locale === '中文简体') {
+        setLocale('zh-CN')
+    } else if (locale === 'English') {
+        setLocale('en-US')
+    }
+    console.log(locale)
+  }
   render() {
     return (
       <Header className="header">
       <div className={styles.header_box}>
           <div>
-            <span className={styles.logo} style={{display: this.props.menu.collapsed ? 'none' : 'inline' }}>突发预警系统</span>
+            <span className={styles.logo} style={{display: this.props.menu.collapsed ? 'none' : 'inline' }}>
+            <FormattedMessage id="WELCOME_TO_UMI_WORLD"></FormattedMessage>
+            </span>
             <Icon
               className="trigger"
               style={{fontSize: '20px'}}
@@ -101,7 +113,7 @@ class MyHeader extends Component {
                        content={<List 
                        dataSource={this.state.languageData}
                        renderItem={(item)=>(
-                          <List.Item>{item}</List.Item>
+                          <List.Item onClick={() => {this.localeChange(item)}}>{item}</List.Item>
                        )}
                        ></List>}
                        size="small" 
