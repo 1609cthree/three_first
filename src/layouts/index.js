@@ -2,10 +2,13 @@ import styles from './index.css';
 import React, { Component } from 'react'
 import router from 'umi/router';
 import MyHeader from './MyHeader'
-import { Layout, Menu, Icon, Input, AutoComplete} from 'antd';
+import { Layout, Menu, Icon } from 'antd';
 import { connect } from 'dva'
+import { formatMessage, setLocale, getLocale, FormattedMessage } from 'umi/locale'
+
 const { SubMenu } = Menu;
 const { Content, Footer } = Layout;
+
 @connect(state => state, (dispatch) => ({
 
 }))
@@ -13,6 +16,113 @@ class BasicLayout extends Component {
     constructor (props) {
       super(props);
       this.state = {
+        MenuItem : [
+          {
+            type: 'Item',
+            textId: 'MENU_Overall_Situation',
+            key: '/',
+            icon: 'pie-chart'
+          },
+          {
+            type: 'Item',
+            textId: 'MENU_Content_Monitoring',
+            key: '/2',
+            icon: 'desktop'
+          },
+          {
+            type: 'SubMenu',
+            key: 'sub1',
+            title: 'MENU_Group_Monitoring',
+            titleIcon: 'mail',
+              MenuItem: [
+                {
+                  type: 'Item',
+                  textId: 'MENU_Account_Behavior',
+                  key: '/4'
+                },
+                {
+                  type: 'Item',
+                  textId: 'MENU_Group_Characteristics',
+                  key: '/5'
+                }
+              ]
+          },{
+            type: 'Item',
+            textId: 'MENU_Correlation_Analysis',
+            key: '/6',
+            icon: 'inbox'
+          },{
+            type: 'Item',
+            textId: 'MENU_Monitoring_Configuration',
+            key: '/7',
+            icon: 'inbox'
+          },{
+            type: 'SubMenu',
+            key: 'sub2',
+            title: 'MENU_Collect_Configuration',
+            titleIcon: 'appstore',
+              MenuItem: [
+                {
+                  type: 'Item',
+                  textId: 'MENU_Account_Management',
+                  key: '/8'
+                },
+                {
+                  type: 'Item',
+                  textId: 'MENU_Group_Management',
+                  key: '/9'
+                },
+                {
+                  type: 'Item',
+                  textId: 'MENU_Acquisition_Key',
+                  key: '/10'
+                },
+                {
+                  type: 'Item',
+                  textId: 'MENU_Performance_Monitoring',
+                  key: '/11'
+                },
+                {
+                  type: 'Item',
+                  textId: 'MENU_Buffs_Group',
+                  key: '/12'
+                }
+              ]
+          },{
+            type: 'SubMenu',
+            key: 'sub3',
+            title: 'MENU_System_Management',
+            titleIcon: 'appstore',
+              MenuItem: [
+                {
+                  type: 'Item',
+                  textId: 'MENU_User_Control',
+                  key: '/13'
+                },
+                {
+                  type: 'Item',
+                  textId: 'MENU_Divisional_Management',
+                  key: '/14'
+                },
+                {
+                  type: 'Item',
+                  textId: 'MENU_Role_Management',
+                  key: '/15'
+                },
+                {
+                  type: 'Item',
+                  textId: 'MENU_Function_Management',
+                  key: '/16'
+                },
+                {
+                  type: 'Item',
+                  textId: 'MENU_Operation_Log',
+                  key: '/17'
+                }
+              ]
+          }
+
+        ],
         collapsed: false,
         rootSubmenuKeys : ['sub1', 'sub2', 'sub3'],
         openKeys: [],
@@ -40,6 +150,7 @@ class BasicLayout extends Component {
     }
     render () {
       // console.log(this.props)
+      let {MenuItem} = this.state;
       return (
          <Layout className={styles.main_box}>
           <MyHeader></MyHeader>
@@ -55,7 +166,31 @@ class BasicLayout extends Component {
                 width={250}
                 className={styles.menu}
               >
-                <Menu.Item key="/">
+              {MenuItem ? MenuItem.map((item) => {
+                if(item.type === 'Item') {
+                  return (<Menu.Item key={item.key}>
+                            <Icon type={item.icon} />
+                            <FormattedMessage id={item.textId}></FormattedMessage>
+                          </Menu.Item>)
+                }else {
+                    return (<SubMenu
+                              key={item.key}
+                              title={
+                                <span>
+                                  <Icon type={item.titleIcon} />
+                                  <FormattedMessage id={item.title}></FormattedMessage>
+                                </span>
+                              }
+                            >
+                              {item.MenuItem ? item.MenuItem.map((item) => (
+                                <Menu.Item key={item.key}>
+                                     <FormattedMessage id={item.textId}></FormattedMessage>
+                                </Menu.Item>
+                              )) :null }
+                            </SubMenu>)
+                }
+              }) : null}
+                {/* <Menu.Item key="/">
                   <Icon type="pie-chart" />
                   <span>整体态势</span>
                 </Menu.Item>
@@ -113,7 +248,7 @@ class BasicLayout extends Component {
                   <Menu.Item key="14">角色管理</Menu.Item>
                   <Menu.Item key="15">功能管理</Menu.Item>
                   <Menu.Item key="16">操作日志</Menu.Item>
-                </SubMenu>
+                </SubMenu> */}
               </Menu>
        
             <Layout style={{ padding: '20px' }}>
