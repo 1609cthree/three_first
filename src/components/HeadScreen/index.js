@@ -21,23 +21,27 @@ class HeadScreen extends Component {
             mores: 
             (<Menu>
                 <Menu.Item key="1">
+                    <Icon type="fire" />
                     巴黎圣母院大火
                 </Menu.Item>
                 <Menu.Divider />
                 <Menu.Item key="2">
+                    <Icon type="fire" />
                     墨尔本枪击案
                 </Menu.Item>
                 <Menu.Item key="3">
+                    <Icon type="fire" />
                     波音修坏顺风飞机
                 </Menu.Item>
                 <Menu.Item key="4">
+                    <Icon type="book" />
                     索马里挟持人质
                 </Menu.Item>
             </Menu>)
         }
     }
     render() {
-        let { menuCont } = this.state;
+        let { menuCont, mores } = this.state;
         return (
             <div className={styles.headerTitle}>
                 <Icon type="home" />
@@ -57,7 +61,7 @@ class HeadScreen extends Component {
                 </div>
                 {/* 右侧按钮 */}
                 <div className={styles.leftBtns}>
-                    <Dropdown overlay={menuCont} trigger={['click']}>
+                    <Dropdown overlay={mores} trigger={['click']}>
                         <a className="ant-dropdown-link" href="#">
                         更多 <Icon type="down" />
                         </a>

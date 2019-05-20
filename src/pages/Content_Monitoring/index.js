@@ -1,6 +1,6 @@
 import styles from './index.less';
 import React, { Component } from 'react';
-import { Layout, Icon, List, Menu, Dropdown } from 'antd';
+import { Layout, List, Menu, Dropdown } from 'antd';
 import HeadScreen from '../../components/HeadScreen/index';
 
 const { Header, Content } = Layout;
@@ -11,14 +11,6 @@ class ContentMonitoring extends Component {
         this.state = {
             listData : [],
             defaultInd: 0,
-            // menuCont: 
-            // (<Menu>
-            //     <Menu.Item key="1">1rd menu item</Menu.Item>
-            //     <Menu.Divider />
-            //     <Menu.Item key="2">2rd menu item</Menu.Item>
-            //     <Menu.Item key="3">3rd menu item</Menu.Item>
-            // </Menu>
-            // )
         }
     }
     componentWillMount () {
@@ -42,22 +34,6 @@ class ContentMonitoring extends Component {
                 {/* 头部信息 */}
                 <Header>
                     <HeadScreen/>
-                    {/* <div className={styles.headerTitle}>
-                        <Icon type="home" />
-                        <span>埃塞尔比亚坠机</span>
-                        <div>
-                            <Dropdown overlay={menuCont} trigger={['click']}>
-                                <a className="ant-dropdown-link" href="www.">
-                                全部账号 <Icon type="down" />
-                                </a>
-                            </Dropdown>
-                            <Dropdown overlay={menuCont} trigger={['click']}>
-                                <a className="ant-dropdown-link" href="www.">
-                                全部账号 <Icon type="down" />
-                                </a>
-                            </Dropdown>
-                        </div>
-                    </div> */}
                 </Header>
                 <Content className={styles.mainWrap}>
                     {/* 内容主题 */}
@@ -67,7 +43,6 @@ class ContentMonitoring extends Component {
                             <li className={styles.active}>检测结果</li>
                             <li>监测分析</li>
                         </ul>
-                        
                         {/* 列表展示 */}
                         <div className={styles.listShow}>
                             {/* 列表展示 */}
