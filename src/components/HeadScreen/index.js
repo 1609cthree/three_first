@@ -22,7 +22,6 @@ class HeadScreen extends Component {
                     <Icon type="fire" />
                     巴黎圣母院大火
                 </Menu.Item>
-                <Menu.Divider />
                 <Menu.Item key="2">
                     <Icon type="fire" />
                     墨尔本枪击案
