@@ -24,3 +24,12 @@
   display: flex;
   justify-content: space-between;
 }
+
+.hover {
+  display: inline-block;
+  height: 100%;
+}
+
+.hover:hover {
+  background: rgba(200,200,200,.3);
+}

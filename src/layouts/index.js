@@ -4,7 +4,7 @@ import router from 'umi/router';
 import MyHeader from './MyHeader'
 import { Layout, Menu, Icon } from 'antd';
 import { connect } from 'dva'
-import { formatMessage, setLocale, getLocale, FormattedMessage } from 'umi/locale'
+import { FormattedMessage } from 'umi/locale'
 
 const { SubMenu } = Menu;
 const { Content, Footer } = Layout;
@@ -38,12 +38,12 @@ class BasicLayout extends Component {
                 {
                   type: 'Item',
                   textId: 'MENU_Account_Behavior',
-                  key: '/4'
+                  key: '/account_behavior'
                 },
                 {
                   type: 'Item',
                   textId: 'MENU_Group_Characteristics',
-                  key: '/5'
+                  key: '/group_characteristics'
                 }
               ]
           },{

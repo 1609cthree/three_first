@@ -5,7 +5,9 @@ export default class index extends Component {
     return (
       <div className={styles.box}>
         <h3 className={styles.title}>{this.props.title}</h3>
-        {this.props.children}
+        <div className={styles.content}>
+          {this.props.children}
+        </div>
       </div>
     )
   }

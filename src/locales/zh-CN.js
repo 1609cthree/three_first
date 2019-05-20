@@ -20,8 +20,4 @@ export default {
   MENU_Function_Management :'功能管理',
   MENU_Operation_Log:'操作日志',
 
-
-
-
-
 }
