@@ -6,7 +6,7 @@ import Liveness from '@/components/Liveness/'
 import InformationRelease from '@/components/InformationRelease/'
 import SentimentAnalysis from '@/components/SentimentAnalysis/'
 import ChartBox from '@/components/ChartBox/'
-import RealData from '@/components/RealData'
+import ContentPreferences from '@/components/ContentPreferences'
 
 // import { formatMessage, setLocale, getLocale, FormattedMessage } from 'umi/locale'
 // console.log(formatMessage, setLocale, getLocale)
@@ -104,7 +104,7 @@ class Page extends Component {
             
             <Col className="gutter-row" span={12}>
               <ChartBox title="内容偏好">
-                <SentimentAnalysis></SentimentAnalysis>
+                <ContentPreferences></ContentPreferences>
               </ChartBox>
             </Col>
             <Col className="gutter-row" span={12}>
