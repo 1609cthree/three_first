@@ -27,7 +27,7 @@ class BasicLayout extends Component {
           {
             type: 'Item',
             textId: 'MENU_Content_Monitoring',
-            key: '/Content_Monitoring',
+            key: '/content_Monitoring',
             icon: 'desktop'
           },
           {
@@ -50,7 +50,7 @@ class BasicLayout extends Component {
           },{
             type: 'Item',
             textId: 'MENU_Correlation_Analysis',
-            key: '/6',
+            key: '/correlation_analyze',
             icon: 'inbox'
           },{
             type: 'Item',
