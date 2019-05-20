@@ -39,12 +39,12 @@ class BasicLayout extends Component {
                 {
                   type: 'Item',
                   textId: 'MENU_Account_Behavior',
-                  key: '/4'
+                  key: '/account_behavior'
                 },
                 {
                   type: 'Item',
                   textId: 'MENU_Group_Characteristics',
-                  key: '/5'
+                  key: '/group_characteristics'
                 }
               ]
           },{

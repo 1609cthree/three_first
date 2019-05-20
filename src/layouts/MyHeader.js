@@ -2,7 +2,7 @@ import styles from './index.css';
 import React, { Component } from 'react'
 import { Layout, Icon, Input, AutoComplete, Popover, List, Avatar, Badge} from 'antd';
 import { connect } from 'dva'
-import { formatMessage, setLocale, getLocale, FormattedMessage } from 'umi/locale'
+import { setLocale, getLocale, FormattedMessage } from 'umi/locale'
 
 const { Header } = Layout;
 
@@ -27,25 +27,39 @@ class MyHeader extends Component {
             '退出登录'
           ],
           languageData: [
-            '中文简体',
-            'English',
-            'France'
-
+            {
+              title:'中文简体',
+              locale: 'zh-CN'
+            },
+            {
+              title:'English',
+              locale: 'en-US'
+            },
+            {
+              title:'France',
+              locale: 'zh-CN'
+            }
           ],
           options: [
             'aa','bb','cc'
-          ]
+          ],
+          visible: false
       }
   }
   localeChange (locale) {
-    if (locale === '中文简体') {
-        setLocale('zh-CN')
-    } else if (locale === 'English') {
-        setLocale('en-US')
-    }
+    setLocale(locale)
     console.log(locale)
+    this.setState({
+      visible: false,
+      locale
+    })
   }
+  handleVisibleChange = visible => {
+    this.setState({ visible });
+  };
   render() {
+    let activeLocale = this.state.languageData.find(item => item.locale === getLocale())
+    activeLocale = activeLocale ? activeLocale.title : '未知'
     return (
       <Header className="header">
       <div className={styles.header_box}>
@@ -79,7 +93,7 @@ class MyHeader extends Component {
                 <Input suffix={<Icon type="search" className="certain-category-icon" />} />
               </AutoComplete>
               <Popover placement="bottomRight" 
-                       title="消息" 
+                       title="消息"
                        content={<List 
                        dataSource={this.state.data}
                        renderItem={(item)=>(
@@ -88,7 +102,7 @@ class MyHeader extends Component {
                        ></List>}
                        size="big" 
                        trigger="click">
-                       <span>
+                       <span className={styles.hover}>
                        <Badge offset={[-10,0]} count={5}>
                           <Icon type="bell" style={{fontSize: '20px', margin: '0 10px'}} />
                       </Badge>
@@ -104,20 +118,21 @@ class MyHeader extends Component {
                        ></List>}
                        size="big" 
                        trigger="click">
-                  <span style={{padding: '0 10px'}}><Avatar icon="user" style={{marginRight: '5px'}} />Nick</span>
+                  <span className={styles.hover} style={{padding: '0 10px'}}><Avatar icon="user" style={{marginRight: '5px'}} />Nick</span>
               </Popover>
               <Popover placement="bottomRight" 
                       //  title="消息" 
+                       visible={this.state.visible}
+                       onVisibleChange={this.handleVisibleChange}
                        content={<List 
                        dataSource={this.state.languageData}
                        renderItem={(item)=>(
-                          <List.Item onClick={() => {this.localeChange(item)}}>{item}</List.Item>
+                          <List.Item className={styles.hover} style={{padding: '5px 10px'}} onClick={() => {this.localeChange(item.locale)}}>{item.title}</List.Item>
                        )}
                        ></List>}
                        size="small" 
                        trigger="click">
-                  {/* <Icon type="bell" style={{fontSize: '20px', margin: '0 10px'}} /> */}
-                  <span>中文简体V</span>
+                  <span className={styles.hover}>{ activeLocale }</span>
               </Popover>
            </div>
       </div>

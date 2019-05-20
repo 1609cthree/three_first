@@ -2,10 +2,9 @@ import styles from './index.css';
 import React, { Component } from 'react'
 import { connect } from 'dva'
 import { Row, Col } from 'antd';
-import Map from '@/components/Map/'
-import CollectionTrend from '@/components/CollectionTrend/'
-import EventAnalysis from '@/components/EventAnalysis/'
-import DataSize from '@/components/DataSize/'
+import OnlineCondition from '@/components/OnlineCondition/'
+import ContentPreferences from '@/components/ContentPreferences/'
+import SentimentAnalysis from '@/components/SentimentAnalysis/'
 import ChartBox from '@/components/ChartBox/'
 import RealData from '@/components/RealData'
 
@@ -30,11 +29,11 @@ class Page extends Component {
   state = {
     list: 
       {
-        title: '实时数据',
+        title: '发言情况',
         data: [
           {
             name: 'list1',
-            tab: 'tab1',
+            tab: 'Tor',
             key:'1',
             items: [
               {
@@ -68,7 +67,7 @@ class Page extends Component {
           },
           {
             name: 'list2',
-            tab: 'tab2',
+            tab: '12P',
             key:'2',
             items: [
               {
@@ -91,55 +90,26 @@ class Page extends Component {
     
     return (
       <div className={styles.normal}>
-        <div className={styles.databox}>
-          <DataSize
-              AllNum="1207800"
-              DayNum="300" 
-              title="Tor">
-          </DataSize>
-          <DataSize
-              AllNum="1207800"
-              DayNum="300" 
-              title="Tor">
-          </DataSize>
-          <DataSize
-              AllNum="1207800"
-              DayNum="300" 
-              title="Tor">
-          </DataSize>
-          <DataSize
-              AllNum="1207800"
-              DayNum="300" 
-              title="Tor">
-          </DataSize>
-          <DataSize
-              AllNum="1207800"
-              DayNum="300" 
-              title="Tor">
-          </DataSize>
-        </div>
-              
-          
-      <Row gutter={16}>
-          <Col className="gutter-row" span={12}>
-            <ChartBox title="突发事件地图">
-              <Map></Map>
-            </ChartBox>
-          </Col>
-          <Col className="gutter-row" span={12}>
-            <RealData list={this.state.list}></RealData>
-          </Col>
-          <Col className="gutter-row" span={12}>
-            <ChartBox title="采集量趋势">
-              <EventAnalysis></EventAnalysis>
-            </ChartBox>
-          </Col>
-          <Col className="gutter-row" span={12}>
-            <ChartBox title="事件类型">
-              <CollectionTrend></CollectionTrend>
-            </ChartBox>
-          </Col>
-    </Row>
+        <Row gutter={16}>
+            <Col className="gutter-row" span={12}>
+              <ChartBox title="上线情况">
+                <OnlineCondition></OnlineCondition>
+              </ChartBox>
+            </Col>
+            <Col className="gutter-row" span={12}>
+              <RealData list={this.state.list}></RealData>
+            </Col>
+            <Col className="gutter-row" span={12}>
+              <ChartBox title="内容偏好">
+                <ContentPreferences></ContentPreferences>
+              </ChartBox>
+            </Col>
+            <Col className="gutter-row" span={12}>
+              <ChartBox title="情感分析">
+                <SentimentAnalysis></SentimentAnalysis>
+              </ChartBox>
+            </Col>
+        </Row>
         
       </div>
     );

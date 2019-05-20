@@ -45,7 +45,7 @@ am4core.useTheme(am4themes_animated);
         return dy;
         });
 
-        let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        chart.yAxes.push(new am4charts.ValueAxis());
 
         // Create series
         let series = chart.series.push(new am4charts.ColumnSeries());
