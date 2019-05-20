@@ -232,7 +232,7 @@ am4core.useTheme(am4themes_animated);
 
       // Create axes
       let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-      let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+      chart.yAxes.push(new am4charts.ValueAxis());
 
       // Create series
       let series = chart.series.push(new am4charts.LineSeries());

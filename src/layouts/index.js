@@ -4,7 +4,8 @@ import router from 'umi/router';
 import MyHeader from './MyHeader'
 import { Layout, Menu, Icon } from 'antd';
 import { connect } from 'dva'
-import { FormattedMessage } from 'umi/locale'
+// import { formatMessage, setLocale, getLocale, FormattedMessage } from 'umi/locale'
+import {FormattedMessage } from 'umi/locale'
 
 const { SubMenu } = Menu;
 const { Content, Footer } = Layout;
@@ -26,7 +27,7 @@ class BasicLayout extends Component {
           {
             type: 'Item',
             textId: 'MENU_Content_Monitoring',
-            key: '/2',
+            key: '/Content_Monitoring',
             icon: 'desktop'
           },
           {
