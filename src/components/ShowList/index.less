@@ -1,0 +1,57 @@
+// 列表展示
+div.listShow {
+    flex: 1;
+    background: #fff;
+    >h3 {
+        font-size: 13px;
+        font-weight: 600;
+        margin: 0 !important; 
+        padding: 8px 25px;
+        background: #3598DC;
+        display: flex;
+        justify-content: space-between;
+        color: #fff;
+    }
+    >div {
+        border: none;
+        >div{
+            >div{
+                >ul{
+                    // 每一个li
+                    >li {
+                        // 内容
+                        display: flex;
+                        flex-direction: column;
+                        >p.contents {
+                            line-height: 1;
+                            font-size: 18px;
+                            font-weight: 600;
+                        }
+                        // 时间 作者
+                        >div.timesMsg {
+                            font-size: 13px;
+                            color: #999;
+                            >span.times {
+                                margin-right: 20px;
+                            }
+                        }
+                        // tag标签
+                        >div.tagsMsg {
+                            font-size: 13px;
+                            color: #999;
+                            >.tagTwo {
+                                margin-left: 55px;
+                            }
+                        }
+                    }
+                    >li:nth-child(odd) {
+                        background: #F4F6F7;
+                    }
+                    >li:nth-child(even) {
+                        background: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
