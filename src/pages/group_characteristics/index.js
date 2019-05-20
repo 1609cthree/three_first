@@ -7,6 +7,7 @@ import InformationRelease from '@/components/InformationRelease/'
 import SentimentAnalysis from '@/components/SentimentAnalysis/'
 import ChartBox from '@/components/ChartBox/'
 import ContentPreferences from '@/components/ContentPreferences'
+import HeadScreen from '@/components/HeadScreen/'
 
 // import { formatMessage, setLocale, getLocale, FormattedMessage } from 'umi/locale'
 // console.log(formatMessage, setLocale, getLocale)
@@ -90,6 +91,8 @@ class Page extends Component {
     
     return (
       <div className={styles.normal}>
+        <h2>群组特征</h2>
+        <HeadScreen></HeadScreen>
         <Row gutter={16}>
             <Col className="gutter-row" span={12}>
               <ChartBox title="活跃度">

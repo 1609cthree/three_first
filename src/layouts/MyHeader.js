@@ -120,11 +120,10 @@ class MyHeader extends Component {
                        trigger="click">
                   <span className={styles.hover} style={{padding: '0 10px'}}><Avatar icon="user" style={{marginRight: '5px'}} />Nick</span>
               </Popover>
-              <Popover placement="bottomRight" 
-                      //  title="消息" 
+              <Popover placement="bottomRight"                       
                        visible={this.state.visible}
                        onVisibleChange={this.handleVisibleChange}
-                       content={<List 
+                       content={<List
                        dataSource={this.state.languageData}
                        renderItem={(item)=>(
                           <List.Item className={styles.hover} style={{padding: '5px 10px'}} onClick={() => {this.localeChange(item.locale)}}>{item.title}</List.Item>
