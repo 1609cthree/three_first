@@ -1,6 +1,6 @@
 import styles from './index.less';
 import React, { Component } from 'react';
-import { Layout, List } from 'antd';
+import { Layout } from 'antd';
 import HeadScreen from '@/components/HeadScreen/index';
 import ShowList from '@/components/ShowList/index';
 
@@ -14,7 +14,6 @@ class ContentMonitoring extends Component {
         }
     }
     render() {
-        let { menuCont, listData } = this.state;
         return (
             <Layout className={styles.wrapper}>
                 {/* 头部信息 */}

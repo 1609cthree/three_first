@@ -50,7 +50,7 @@ class ShowList extends Component {
                         <p className={styles.contents}>{item.content}</p>
                         <div className={styles.timesMsg}>
                             <span className={styles.times}>时间：{new Date().toLocaleString().split('/').join('-')}</span>
-                            <span className={styles.forms}>来源：<a href="#">{item.forms}</a></span>
+                            <span className={styles.forms}>来源：<a href="/">{item.forms}</a></span>
                         </div>
                         <div className={styles.tagsMsg}>
                             <span className={styles.tagOne}>{item.tag[0]}</span>

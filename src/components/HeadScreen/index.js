@@ -1,8 +1,6 @@
 import styles from './index.less';
 import React, { Component } from 'react';
-import { Layout, Icon, List, Menu, Dropdown } from 'antd';
-
-const { Header, Content } = Layout;
+import { Icon, Menu, Dropdown } from 'antd';
 
 class HeadScreen extends Component {
     constructor(props) {
@@ -49,12 +47,12 @@ class HeadScreen extends Component {
                 {/* 下拉按钮 */}
                 <div>
                     <Dropdown overlay={menuCont} trigger={['click']}>
-                        <a className="ant-dropdown-link" href="#">
+                        <a className="ant-dropdown-link" href="/">
                         全部账号 <Icon type="down" />
                         </a>
                     </Dropdown>
                     <Dropdown overlay={menuCont} trigger={['click']}>
-                        <a className="ant-dropdown-link" href="#">
+                        <a className="ant-dropdown-link" href="/">
                         全部群组 <Icon type="down" />
                         </a>
                     </Dropdown>
@@ -62,7 +60,7 @@ class HeadScreen extends Component {
                 {/* 右侧按钮 */}
                 <div className={styles.leftBtns}>
                     <Dropdown overlay={mores} trigger={['click']}>
-                        <a className="ant-dropdown-link" href="#">
+                        <a className="ant-dropdown-link" href="/">
                         更多 <Icon type="down" />
                         </a>
                     </Dropdown>
