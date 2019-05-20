@@ -6,8 +6,6 @@ import { formatMessage, setLocale, getLocale, FormattedMessage } from 'umi/local
 
 const { Header } = Layout;
 
-
-
 @connect(state => state, (dispatch) => ({
     ChangeCollapsed () {
         dispatch({
