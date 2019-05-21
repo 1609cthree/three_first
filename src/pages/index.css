@@ -8,4 +8,5 @@
 .databox {
   display: flex;
   justify-content: space-between;
+  color: #999;
 }
