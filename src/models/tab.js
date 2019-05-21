@@ -1,26 +1,28 @@
+import getNationWarning from '@/servers/getNationWarning.js'
+import getNation from '@/servers/getNation.js'
+
 export default {
     namespace: 'tab',
     state: {
-        name: 'zhangsan',
-        age: 21
+        nationWarning:[],
+        nation:{},
+        isSkeleton:true
     },
     effects: {
-        *setAge (action, { put, select }) {
-            // let age  = yield select((allState) => {
-            //     console.log(allState)
-            //     return allState.list.age
-            // })
-            // console.log(age)
+        *getChart1 (action, { put, select }) {
+            let nationWarning  = yield getNationWarning();
+            let nation = yield getNation();  
             yield put({
-                type: 'list/changeName'
+                type: 'setChart1',
+                nationWarning: nationWarning.data.data,
+                nation: nation.data.data
             })
         }
     },
     reducers: {
-        changeAge (state, action) {
+        setChart1 (state, action) {
             // console.log(state, action)
-            let age = state.age + 1
-            return {...state, age }
+            return {...state,nationWarning: action.nationWarning,nation: action.nation, isSkeleton: false }
         }
     }
 }

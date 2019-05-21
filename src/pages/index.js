@@ -1,7 +1,7 @@
 import styles from './index.css';
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Row, Col } from 'antd';
+import { Row, Col, Skeleton } from 'antd';
 import Map from '@/components/Map/'
 import CollectionTrend from '@/components/CollectionTrend/'
 import EventAnalysis from '@/components/EventAnalysis/'
@@ -14,12 +14,12 @@ import RealData from '@/components/RealData'
 // 获取指定文字的多语言版本
 
 
-@connect(state=>state,(dispatch)=>{
+@connect(state=>state.tab,(dispatch)=>{
     
     return {
       aa () {
         dispatch({
-          type: 'tab/setAge'
+          type: 'tab/getChart1'
         })
       }
     }
@@ -81,11 +81,16 @@ class Page extends Component {
 
           }
         ]
-      }
+      },
+      isSkeleton:true
     
   }
-  componentWillMount () {
-
+  componentDidMount () {
+      this.props.aa();
+  }
+  static getDerivedStateFromProps (prevProps,bb) {
+      console.log(prevProps, bb)
+      return {isSkeleton:prevProps.isSkeleton}
   }
   render () {
     
@@ -123,7 +128,9 @@ class Page extends Component {
       <Row gutter={16}>
           <Col className="gutter-row" span={12}>
             <ChartBox title="突发事件地图">
+            <Skeleton loading={this.state.isSkeleton}>
               <Map></Map>
+            </Skeleton>
             </ChartBox>
           </Col>
           <Col className="gutter-row" span={12}>
