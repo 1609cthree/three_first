@@ -21,6 +21,12 @@ import RealData from '@/components/RealData'
         dispatch({
           type: 'tab/getChart1'
         })
+        dispatch({
+          type: 'tab/getChart2'
+        })
+        dispatch({
+          type: 'tab/getChart3'
+        })
       }
     }
     
@@ -82,15 +88,15 @@ class Page extends Component {
           }
         ]
       },
-      isSkeleton:true
-    
+      isSkeleton1:true ,
+      isSkeleton2:true ,
+      isSkeleton3:true 
   }
   componentDidMount () {
       this.props.aa();
   }
   static getDerivedStateFromProps (prevProps,bb) {
-      console.log(prevProps, bb)
-      return {isSkeleton:prevProps.isSkeleton}
+      return {isSkeleton1:prevProps.isSkeleton1,isSkeleton2:prevProps.isSkeleton2,isSkeleton3:prevProps.isSkeleton3}
   }
   render () {
     
@@ -128,7 +134,7 @@ class Page extends Component {
       <Row gutter={16}>
           <Col className="gutter-row" span={12}>
             <ChartBox title="突发事件地图">
-            <Skeleton loading={this.state.isSkeleton}>
+            <Skeleton loading={this.state.isSkeleton1}>
               <Map></Map>
             </Skeleton>
             </ChartBox>
@@ -138,12 +144,16 @@ class Page extends Component {
           </Col>
           <Col className="gutter-row" span={12}>
             <ChartBox title="采集量趋势">
-              <EventAnalysis></EventAnalysis>
+              <Skeleton loading={this.state.isSkeleton2}>
+                <EventAnalysis></EventAnalysis>
+              </Skeleton>
             </ChartBox>
           </Col>
           <Col className="gutter-row" span={12}>
             <ChartBox title="事件类型">
-              <CollectionTrend></CollectionTrend>
+              <Skeleton loading={this.state.isSkeleton3}>
+                 <CollectionTrend></CollectionTrend>
+              </Skeleton>
             </ChartBox>
           </Col>
     </Row>

@@ -1,47 +1,24 @@
 import React, { Component } from 'react'
-
+import { connect } from 'dva'
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
 am4core.useTheme(am4themes_animated);
 
-
+@connect(state => state.tab)
  class CollectionTrend extends Component {
   componentDidMount() {
+    console.log(this.props)
     let chart = am4core.create("chartdiv", am4charts.XYChart);
-
-    chart.data = [{
-        "country": "爆炸品",
-        "visits": 43
-        }, {
-        "country": "枪支交易",
-        "visits": 14
-        }, {
-        "country": "违禁药品",
-        "visits": 12
-        }, {
-        "country": "情报交易",
-        "visits": 42
-        }, {
-        "country": "数据黑市",
-        "visits": 22
-        }, {
-        "country": "信息泄露",
-        "visits": 55
-        }];
-
-        // Create axes
-
+    chart.data = this.props.allWarnType
         let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-        categoryAxis.dataFields.category = "country";
+        categoryAxis.dataFields.category = "eventType";
         categoryAxis.renderer.grid.template.location = 0;
         categoryAxis.renderer.minGridDistance = 30;
 
         categoryAxis.renderer.labels.template.adapter.add("dy", function(dy, target) {
-        // if (target.dataItem && target.dataItem.index & 2 == 2) {
-        //     return dy + 25;
-        // }
+        
         return dy;
         });
 
@@ -50,7 +27,7 @@ am4core.useTheme(am4themes_animated);
         // Create series
         let series = chart.series.push(new am4charts.ColumnSeries());
         series.dataFields.valueY = "visits";
-        series.dataFields.categoryX = "country";
+        series.dataFields.categoryX = "eventType";
         series.name = "Visits";
         series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
         series.columns.template.fillOpacity = .8;
