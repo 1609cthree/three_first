@@ -29,7 +29,7 @@ export default {
   ],
   proxy: {
     '/api': {
-      target: 'http://169.254.213.21:7001',
+      target: 'http://169.254.213.200:7001',
       pathRewrite: { '^/api': '' },
       changeOrigin: true
     }

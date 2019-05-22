@@ -19,6 +19,9 @@ import RealData from '@/components/RealData'
     return {
       aa () {
         dispatch({
+          type: 'tab/getEquipmentType'
+        })
+        dispatch({
           type: 'tab/getChart1'
         })
         dispatch({
@@ -26,6 +29,11 @@ import RealData from '@/components/RealData'
         })
         dispatch({
           type: 'tab/getChart3'
+        })
+      },
+      bb () {
+        dispatch({
+          type: 'tab/getPollEquipment'
         })
       }
     }
@@ -94,40 +102,33 @@ class Page extends Component {
   }
   componentDidMount () {
       this.props.aa();
+
+      this.timer = setInterval(() => {
+          this.props.bb();
+      }, 5000);
   }
+
+
   static getDerivedStateFromProps (prevProps,bb) {
       return {isSkeleton1:prevProps.isSkeleton1,isSkeleton2:prevProps.isSkeleton2,isSkeleton3:prevProps.isSkeleton3}
   }
+
+  
   render () {
-    
     return (
       <div className={styles.normal}>
         <div className={styles.databox}>
-          <DataSize
-              AllNum="1207800"
-              DayNum="300" 
-              title="Tor">
-          </DataSize>
-          <DataSize
-              AllNum="1207800"
-              DayNum="300" 
-              title="Tor">
-          </DataSize>
-          <DataSize
-              AllNum="1207800"
-              DayNum="300" 
-              title="Tor">
-          </DataSize>
-          <DataSize
-              AllNum="1207800"
-              DayNum="300" 
-              title="Tor">
-          </DataSize>
-          <DataSize
-              AllNum="1207800"
-              DayNum="300" 
-              title="Tor">
-          </DataSize>
+        {
+          this.props.EquipmentType.map((item,index) => (
+            <DataSize
+                key={index}
+                AllNum={item.gatherCount}
+                DayNum={item.todayCount} 
+                title={item.name}>
+            </DataSize>
+          ))
+        }
+          
         </div>
               
           
@@ -161,6 +162,11 @@ class Page extends Component {
       </div>
     );
   }
+componentWillUnmount(){
+    if (this.timer) {
+        clearInterval(this.timer)
+    }
+}
   
 }
 
