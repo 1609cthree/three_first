@@ -107,10 +107,12 @@ class Page extends Component {
           this.props.bb();
       }, 5000);
   }
-
-
-  static getDerivedStateFromProps (prevProps,bb) {
-      return {isSkeleton1:prevProps.isSkeleton1,isSkeleton2:prevProps.isSkeleton2,isSkeleton3:prevProps.isSkeleton3}
+  static getDerivedStateFromProps (prevProps) {
+      return {
+        isSkeleton1:prevProps.isSkeleton1,
+        isSkeleton2:prevProps.isSkeleton2,
+        isSkeleton3:prevProps.isSkeleton3
+      }
   }
 
   

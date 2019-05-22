@@ -14,8 +14,7 @@ import HeadScreen from '@/components/HeadScreen/'
 // 获取指定文字的多语言版本
 
 
-@connect(state=>state,(dispatch)=>{
-    
+@connect(state=>state,(dispatch) => {
     return {
       aa () {
         dispatch({
