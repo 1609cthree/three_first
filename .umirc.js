@@ -4,7 +4,8 @@ export default {
   treeShaking: true,
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
-    ['umi-plugin-react', {
+    [
+      'umi-plugin-react', {
       locale: {
           default: 'zh-CN', //默认语言 zh-CN
           baseNavigator: true, // 为true时，用navigator.language的值作为默认语言
@@ -27,10 +28,10 @@ export default {
     }],
   ],
   proxy: {
-    "/api": {
-      "target": "http://196.254.213.21:7001",
-      "changeOrigin": true,
-      "pathRewrite": { "^/api" : "" }
+    '/api': {
+      target: 'http://169.254.213.200:7001',
+      pathRewrite: { '^/api': '' },
+      changeOrigin: true
     }
   }
 }
