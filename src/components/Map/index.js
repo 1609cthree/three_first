@@ -451,6 +451,7 @@ am4core.useTheme(am4themes_animated);
         //     { "id":"ZM", "name":"Zambia", "value":13474959, "color":chart.colors.getIndex(2) },
         //     { "id":"ZW", "name":"Zimbabwe", "value":12754378, "color":chart.colors.getIndex(2) }
         // ];
+        // console.log(this.props)
         let latlong = this.props.nation;
         let mapData = this.props.nationWarning;
         // Add lat/long information to data
