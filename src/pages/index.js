@@ -108,6 +108,7 @@ class Page extends Component {
       }, 5000);
   }
   static getDerivedStateFromProps (prevProps) {
+    console.log(prevProps)
       return {
         isSkeleton1:prevProps.isSkeleton1,
         isSkeleton2:prevProps.isSkeleton2,
